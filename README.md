@@ -1,6 +1,6 @@
 # my_flutter_todo
 
-A new Flutter project.
+A new Flutter project. Ulitina Arina.
 
 ## Getting Started
 
