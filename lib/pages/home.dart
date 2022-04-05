@@ -11,8 +11,6 @@ final localNotifications = FlutterLocalNotificationsPlugin();
 
 Future<void> configureLocalTimeZone() async {
   tz.initializeTimeZones();
-  //final String timeZoneName = await platform.invokeMethod('getTimeZoneName');
-  //tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
 
@@ -74,7 +72,7 @@ class _HomeState extends State<Home> {
         )
     );
 
-    String body = DateFormat.yMMMd().format(localtime);
+    String body = DateFormat('yyyy-MM-dd HH:mm').format(localtime);
 
     if (localtime.isAfter(DateTime(1900, 1, 1))) {
       await localNotifications.zonedSchedule(
@@ -151,6 +149,7 @@ class _HomeState extends State<Home> {
                                     onChanged: (String value) {
                                       _userToDO = value;
                                     },
+                                    maxLength: 50,
                                   ),
                                   actions:[
                                     ElevatedButton (
@@ -195,7 +194,7 @@ class _HomeState extends State<Home> {
                                         onPressed: (){
                                           _userToDO = "";
                                           Navigator.of(context).pop();
-                                        }, child: const Text('Отмена')),
+                                        }, child: const Icon(Icons.clear)),
                                     ElevatedButton(
                                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.teal)),
                                         onPressed: (){
@@ -279,6 +278,7 @@ class _HomeState extends State<Home> {
                 onChanged: (String value) {
                   _userToDO = value;
                 },
+                maxLength: 50,
               ),
               actions:[
                 ElevatedButton(
@@ -308,7 +308,7 @@ class _HomeState extends State<Home> {
                     onPressed: (){
                       _userToDO = "";
                       Navigator.of(context).pop();
-                    }, child: const Text('Отмена')),
+                    }, child: const Icon(Icons.clear)),
                 ElevatedButton(
                     style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.teal)),
                     onPressed: (){
